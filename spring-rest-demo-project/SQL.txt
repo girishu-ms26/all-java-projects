@@ -1,0 +1,30 @@
+SET PATH=%PATH%;C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+mysql -u root -p
+root
+
+USE mydb;
+
+
+DROP TABLE `customer`;
+
+
+CREATE TABLE `customer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(45) DEFAULT NULL,
+  `last_name` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+
+INSERT INTO `customer` VALUES 
+	(1,'Rohit','Sharma','rs@mi.in'),
+	(2,'Virat','Kohli','vk@rcb.in'),
+	(3,'Rishabh','Pant','rp@dd.in'),
+	(4,'Jasprit','Bumrah','jb@mi.in'),
+	(5,'Sachin','Tendulkar','at@bcci.in');
+	
+
+SELECT * FROM customer;
+

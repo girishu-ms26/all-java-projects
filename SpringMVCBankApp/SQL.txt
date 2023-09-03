@@ -1,0 +1,15 @@
+DROP TABLE Bankusers;
+
+CREATE TABLE Bankusers
+	(
+		Accountno NUMBER(5) PRIMARY KEY,
+		Username VARCHAR2(20),
+		password VARCHAR2(20)
+	);
+
+INSERT INTO Bankusers VALUES(1,'Girishu','123');
+INSERT INTO Bankusers VALUES(2,'Vijetha','123');
+
+commit;
+
+SELECT * FROM Bankusers;

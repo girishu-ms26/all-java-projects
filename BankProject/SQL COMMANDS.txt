@@ -1,0 +1,44 @@
+DROP TABLE Alltrans;
+DROP TABLE Bacc;
+DROP TABLE ContactUs;
+DROP TABLE Bankusers;
+
+CREATE TABLE Bankusers
+	(
+		Accountno NUMBER(5) PRIMARY KEY,
+		Username VARCHAR2(20),
+		password VARCHAR2(20)
+	);
+
+CREATE TABLE Bacc
+	(
+		AccountNo NUMBER(5) REFERENCES Bankusers(Accountno),
+		Username VARCHAR2(20),
+		Balance NUMBER(10,2)		
+	);
+
+CREATE TABLE alltrans
+	(
+		AccountNo NUMBER(5),	
+		Username VARCHAR2(20),
+		TransactionType VARCHAR(2),
+		Amount NUMBER(10,2),
+		Status VARCHAR2(10)
+	);
+
+
+CREATE TABLE ContactUs
+	(
+		Name VARCHAR2(20),
+		Mobile NUMBER(13),
+		Email VARCHAR2(30),
+		Problem VARCHAR2(100)
+	);
+
+commit;
+
+
+select * from Bankusers;
+select * from Bacc;
+select * from Alltrans;
+select * from ContactUs;

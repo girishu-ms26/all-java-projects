@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:context = "http://www.springframework.org/schema/context"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:mvc = "http://www.springframework.org/schema/mvc"
+   xmlns:tx="http://www.springframework.org/schema/tx"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans     
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/context 
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd
+   http://www.springframework.org/schema/mvc
+   http://www.springframework.org/schema/mvc/spring-mvc.xsd
+   http://www.springframework.org/schema/tx
+   http://www.springframework.org/schema/tx/spring-tx.xsd">
+   
+   <!-- Component Scanning for Controllers and Other classes -->
+    <context:component-scan base-package="com.mphasis.crmdemo" />
+    
+   <!-- Adding support for Annotation Driven Controllers --> 
+    <mvc:annotation-driven />
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+   	  
+   <!-- Configuring the View Resolver -->
+   
+   <bean id="ViewResolver"
+   		 class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+   
+   				<property name="prefix">
+   					<value>/WEB-INF/ViewPages/</value>
+   				</property>
+   				<property name="suffix">
+   					<value>.jsp</value>
+   				</property>
+   </bean>
+  <!-- Defining the the Database DataSource -->
+  
+   <bean id="myDataSource"
+   		 class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" >
+   		 <!--   Defining the Database Connection Information as DataSource -->
+   		 
+   		 <property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
+   		 <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/mydb?useSSL=false" />
+   		 <property name="user" value="scott" />
+   		 <property name="password" value="tiger" />
+   		 
+   		 <!--  Defining Connection Pool Properties --> 
+   		 
+   		 <property name="minPoolSize" value="1" />
+   		 <property name="maxPoolSize" value="20" />
+   		 
+   </bean>
+   
+   <!-- Defining the Hibernate SessionFactory -->
+   
+   <bean id="sessionFactory"
+   		 class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+   		 
+   		 <property name="dataSource" ref="myDataSource" />  <!-- We have injected the DataSource here -->
+   		 <property name="packagesToScan" value="com.mphasis.crmdemo.entity" />
+   		 
+   		 <property name="hibernateProperties">
+   		 
+   		 		<props>
+   		 				<!-- Defining the Hibernate Dialect for MySQL -->
+   		 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+   		 				<prop key="hibernate.show_sql">true</prop>
+   		 		</props>
+   		 </property>
+   	</bean>	
+   	<!-- Defining the Hibernate TransactionManager -->
+   	
+   	<bean id="myTransactionManager"
+   		  class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+   		  <property name="sessionFactory" ref="sessionFactory"/>
+   	</bean>
+   
+   <!--  Enabling the support of Transactional Annotations -->
+   
+   <tx:annotation-driven transaction-manager="myTransactionManager" />
+   
+ </beans>

@@ -1,0 +1,40 @@
+DROP TABLE Actiontable;
+DROP TABLE Accountstable;
+commit;
+
+CREATE TABLE AccountsTable
+	(
+		AccountID NUMBER(3) PRIMARY KEY,
+		Bal NUMBER(10,2)
+	);
+
+INSERT INTO AccountsTable VALUES(1,1000);
+INSERT INTO AccountsTable VALUES(2,2000);
+INSERT INTO AccountsTable VALUES(3,1500);
+INSERT INTO AccountsTable VALUES(4,6500);
+INSERT INTO AccountsTable VALUES(5,500);
+
+CREATE TABLE ActionTable
+	(
+		AccountID NUMBER(3),
+		O CHAR,
+		New_Value NUMBER(10,2),
+		Status VARCHAR(40),
+		Time_Tag DATE
+	); 
+
+INSERT INTO ActionTable VALUES(3,'u',599,NULL,'18-NOV-88');
+INSERT INTO ActionTable VALUES(6,'i',20099,NULL,'18-NOV-88');
+INSERT INTO ActionTable VALUES(5,'d',NULL,NULL,'18-NOV-88');
+INSERT INTO ActionTable VALUES(7,'u',1599,NULL,'18-NOV-88');
+INSERT INTO ActionTable VALUES(1,'i',399,NULL,'18-NOV-88');
+INSERT INTO ActionTable VALUES(9,'d',NULL,NULL,'18-NOV-88');
+INSERT INTO ActionTable VALUES(10,'x',NULL,NULL,'18-NOV-88');
+INSERT INTO ActionTable VALUES(100,'b',NULL,NULL,'18-NOV-88');
+INSERT INTO ActionTable VALUES(101,'u',5000,NULL,'18-NOV-88');
+INSERT INTO ActionTable VALUES(102,'i',100,NULL,'18-NOV-88');
+
+commit;
+
+SELECT * FROM Accountstable;
+SELECT * FROM ActionTable;

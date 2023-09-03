@@ -1,0 +1,73 @@
+SET PATH=%PATH%;C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+mysql -u root -p
+root
+
+use mydb
+
+DROP TABLE EUsers;
+DROP TABLE EAdmins;
+DROP TABLE EMedicines;
+DROP TABLE ECart;
+
+CREATE TABLE `EUsers`(
+		`userid` INT(5) NOT NULL AUTO_INCREMENT,
+		`first_name` VARCHAR(50),
+		`last_name` VARCHAR(50),
+		`mobile_no` INT(10),
+		`age` INT(3),
+		`username` VARCHAR(50),
+		`password` VARCHAR(50),
+		PRIMARY KEY(`userid`)
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+INSERT INTO `EUsers` VALUES
+	(1,'Girishu','MS',1234567890,22,'girishu','123'),
+	(2,'Suhas','K',1234567890,22,'suhaas','123');
+
+CREATE TABLE `EMedicines` (
+		`medicineid` INT(5) NOT NULL AUTO_INCREMENT,
+		`medicine_name` VARCHAR(50),
+		`manufacture_date` DATE,
+		`type`VARCHAR(50),
+		`price` INT(10),
+		`description` VARCHAR(100),
+		`seller` VARCHAR(50),
+		`quantityavailable` INT(10),
+		PRIMARY KEY(`medicineid`)
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+INSERT INTO `EMedicines` VALUES
+	(1,'Aolo650','2001-12-22','Tablet',10,'Good','MERCHANT 1',10),
+	(2,'Bolo650','2002-12-22','Syrup',20,'VGOOD','MERCHANT 2',10),
+	(3,'Colo650','2003-12-22','Injection',30,'AMAZING','MERCHANT 3',10),
+	(4,'Dolo650','2004-12-22','Syrup',40,'SUPER GOOD','MERCHANT 4',10),
+	(5,'Eolo650','2005-12-22','Tablet',50,'CRAZY','MERCHANT 5',10),
+	(6,'Folo650','2006-12-22','Tablet',60,'VERY AMAZING','MERCHANT 6',10),
+	(7,'Golo650','2007-12-22','Syrup',70,'EXTRAORDINARY','MERCHANT 7',10),
+	(8,'Holo650','2008-12-22','Injection',80,'FANTASTIC','MERCHANT 8',10);
+
+CREATE TABLE `EAdmins` (
+		`adminid` INT(5) NOT NULL AUTO_INCREMENT,
+		`admin` VARCHAR(20),
+		`password` VARCHAR(20),
+		PRIMARY KEY(`adminid`)
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+INSERT INTO `EAdmins` VALUES
+	(1,'Girishu','123'),
+	(2,'Suhas','123');
+
+CREATE TABLE `Ecart`(
+		`medicineid` INT(5) NOT NULL,
+		`medicine_name` VARCHAR(50),
+		`price` INT(10),
+		`description` VARCHAR(100),
+		PRIMARY KEY(`medicineid`)
+);
+
+
+SELECT * FROM EUsers;
+SELECT * FROM EAdmins;
+SELECT * FROM EMedicines;
+SELECT * FROM Ecart;

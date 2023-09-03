@@ -1,0 +1,20 @@
+DROP TABLE CustomersJSP;
+
+CREATE TABLE CustomersJSP(
+	ID NUMBER(3) PRIMARY KEY,
+	Name VARCHAR2(20),
+	Location VARCHAR2(20),
+	Email VARCHAR2(30)
+);
+
+INSERT INTO CustomersJSP VALUES(1,'Hoffman','London','Hoffman@gmail.com');
+INSERT INTO CustomersJSP VALUES(2,'Giovanni','Rome','Giovanni@gmail.com');
+INSERT INTO CustomersJSP VALUES(3,'Liu','San Jose','Liu@gmail.com');
+INSERT INTO CustomersJSP VALUES(4,'Grass','Berlin','Grass@gmail.com');
+INSERT INTO CustomersJSP VALUES(5,'Ciemens','London','Ciemens@gmail.com');
+INSERT INTO CustomersJSP VALUES(6,'Pereira','Rome','Pereira@gmail.com');
+
+
+COMMIT;
+
+SELECT * FROM  CustomersJSP;

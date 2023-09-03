@@ -1,0 +1,43 @@
+DROP TABLE BankTrans;
+DROP TABLE ValidTrans;
+DROP TABLE InvalidTrans;
+
+CREATE TABLE BankTrans
+	(
+		TransID VARCHAR2(5) PRIMARY KEY,
+		AcctNo NUMBER(4),
+		OldBal NUMBER(10,2),
+		TransType VARCHAR(9),
+		TransAmt NUMBER(10,2),
+		NewBal NUMBER(10,2),
+		TransStat VARCHAR2(7)
+	);
+
+INSERT INTO BankTrans VALUES('T001',2001,5000,'W',900,NULL,NULL);
+INSERT INTO BankTrans VALUES('T002',2002,3000,'D',1500,NULL,NULL);
+INSERT INTO BankTrans VALUES('T003',2003,5000,'W',9000,NULL,NULL);
+INSERT INTO BankTrans VALUES('T004',2004,5000,'W',900,NULL,NULL);
+INSERT INTO BankTrans VALUES('T005',2005,5000,'W',9000,NULL,NULL);
+
+CREATE TABLE ValidTrans
+	(
+		TransID VARCHAR(5) REFERENCES BankTrans(TransID),
+		TransType CHAR,
+		TransAmt NUMBER(10,2),
+		Validity VARCHAR(7)
+	);
+
+CREATE TABLE InvalidTrans
+	(
+		TransID VARCHAR(5) REFERENCES BankTrans(TransID),
+		TransType CHAR,
+		TransAmt NUMBER(10,2),
+		Validity VARCHAR(7)
+	);
+
+Commit;
+ 
+SELECT * FROM BankTrans;
+SELECT * FROM ValidTrans;
+SELECT * FROM InvalidTrans;
+

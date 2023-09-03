@@ -1,0 +1,60 @@
+SET PATH=%PATH%;C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+mysql -u root -p
+root
+
+use mydb
+
+
+DROP TABLE Citizens;
+DROP TABLE Adminsapi;
+DROP TABLE Contactus;
+
+CREATE TABLE `ContactUs` (
+		`refid` BIGINT(10) NOT NULL AUTO_INCREMENT,
+		`Name` VARCHAR(50),
+		`phno` BIGINT(10),
+		`Email` VARCHAR(30),
+		`Problem` VARCHAR(300),
+		PRIMARY KEY(`refid`)
+)ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `Adminsapi` (
+	`id` INT(3) NOT NULL AUTO_INCREMENT,
+	`username` VARCHAR(25) NOT NULL,
+	`password` VARCHAR(25) NOT NULL,
+	PRIMARY KEY(`id`) 
+)ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=latin1;
+
+INSERT INTO `Adminsapi` VALUES
+	(1,'Girishu','123'),
+	(2,'Vijetha','321');
+
+CREATE TABLE `citizens` (
+	`refid` INT(10) NOT NULL AUTO_INCREMENT,
+	`uid` BIGINT(12) DEFAULT NULL,
+	`vstatus` int(1) DEFAULT NULL,
+	`first_name` varchar(45) NOT NULL,
+	`middle_name` varchar(45) DEFAULT NULL,
+	`last_name` varchar(45) NOT NULL,
+	`age` INT(3) DEFAULT NULL,
+	`gender` CHAR(1) NOT NULL,
+	`email` varchar(45) DEFAULT NULL,
+	`phno` BIGINT(10) DEFAULT NULL, 
+	 PRIMARY KEY(`refid`)
+)ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=latin1;
+
+INSERT INTO `citizens` VALUES
+	(101,123456789012,0,'Girishu','M','S','22','M','g@gmail.com',9035451302),
+	(102,123456789013,2,'Ganesh','B','Doke','23','M','ganesh@gmail.com',7709952688),
+	(103,123456789014,2,'Neha','S','Aswale','22','F','neha@gmail.com',9613380380),
+	(104,123456789015,1,'Saurabh','B','Kesarkar','23','M','saurah@gmail.com',8698170970),
+	(105,123456789016,1,'Meera','B','Patil','23','F','meera@gmail.com',9096162119),
+	(106,123456789017,2,'Akhila','R','Manda','23','F','akhila@gmail.com',7095268622),
+	(107,123456789018,0,'Prashant','P','Shinde','23','M','prashant@gmail.com',8097403570),
+	(108,123456789019,'2','Divya','M','Patil','23','F','divya@gmail.com',8805751865);
+
+SELECT * FROM Citizens;
+SELECT * FROM Adminsapi;
+SELECT * FROM Contactus;
+
